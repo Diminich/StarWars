@@ -33,7 +33,7 @@ const peopleReducer = (state = initialState, action) => {
     }
 };
 
-export const people = (people) => ({
+const people = (people) => ({
     type: PEOPLE, people
 });
 

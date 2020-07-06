@@ -7,7 +7,7 @@ let initialState = {
     created: "",
     director: "",
     edited: "",
-    episode_id: '',
+    episode_id: null,
     planets: [],
     producer: "",
     release_date: "",
