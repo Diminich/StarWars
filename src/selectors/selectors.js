@@ -3,25 +3,24 @@ import {useSelector} from "react-redux";
 
 export const PeopleComponents = () => {
     const people = useSelector(state => state.peoplePage);
-    console.log(people);
     return (
         <div>
-            <div>name: {people.name}</div>
-            <div>height: {people.height}</div>
-            <div>mass: {people.mass}</div>
-            <div>hair_color: {people.hair_color}</div>
-            <div>skin_color: {people.skin_color}</div>
-            <div>eye_color: {people.eye_color}</div>
-            <div>birth_year: {people.birth_year}</div>
-            <div>gender: {people.gender}</div>
-            <div>Homeworld: {people.Homeworld}</div>
-            <div>films: {people.films}</div>
-            <div>species: {people.species}</div>
-            <div>vehicles: {people.vehicles}</div>
-            <div>starships: {people.starships}</div>
-            <div>created: {people.created}</div>
-            <div>edited: {people.edited}</div>
-            <div>URL: {people.url}</div>
+            <div>Name: {people.searchResult[0]?.name}</div>
+            <div>Height: {people.searchResult[0]?.height}</div>
+            <div>Mass: {people.searchResult[0]?.mass}</div>
+            <div>Hair_color: {people.searchResult[0]?.hair_color}</div>
+            <div>Skin_color: {people.searchResult[0]?.skin_color}</div>
+            <div>Eye_color: {people.searchResult[0]?.eye_color}</div>
+            <div>Birth_year: {people.searchResult[0]?.birth_year}</div>
+            <div>Gender: {people.searchResult[0]?.gender}</div>
+            <div>Homeworld: {people.searchResult[0]?.homeworld}</div>
+            <div>Films: {people.searchResult[0]?.films}</div>
+            <div>Species: {people.searchResult[0]?.species}</div>
+            <div>Vehicles: {people.searchResult[0]?.vehicles}</div>
+            <div>Starships: {people.searchResult[0]?.starships}</div>
+            <div>Created: {people.searchResult[0]?.created}</div>
+            <div>Edited: {people.searchResult[0]?.edited}</div>
+            <div>URL: {people.searchResult[0]?.url}</div>
         </div>
     )
 };

@@ -4,25 +4,38 @@ import {getPeople} from "../../redux/people-reducer";
 import people from "./People.module.scss";
 import {PeopleComponents} from "../../selectors/selectors";
 import {NavLink} from "react-router-dom";
+import {Input} from 'antd';
 
 function People() {
-    const [peopleId, setPeopleId] = useState('');
+    const [peopleName, setPeopleName] = useState('');
     const dispatch = useDispatch();
 
-    const onChangeInputPeople = ({currentTarget: {value}}) => setPeopleId(value);
+    const {Search} = Input;
+
+    const onChangeInputPeople = ({currentTarget: {value}}) => setPeopleName(value);
 
     const requestPeople = () => {
-        dispatch(getPeople(peopleId));
-        setPeopleId('')
+        debugger
+        dispatch(getPeople(peopleName));
+        setPeopleName('')
     };
 
     return (
         <nav className={people.wrapper}>
             <div className={people.wrapperContent}>
                 <div className={people.requestInputButton}>
-                    <input className={people.requestInput} onChange={onChangeInputPeople} value={peopleId} />
-                    <button onClick={requestPeople}>request</button>
-                    <NavLink to = '/' ><button className={people.buttonBack}>Back</button></NavLink>
+                    <Search
+                        placeholder="Add name people"
+                        enterButton="Search"
+                        size="large"
+                        onChange={onChangeInputPeople}
+                        onSearch={requestPeople}
+                        value={peopleName}
+                        type='search'
+                    />
+                    <NavLink to='/'>
+                        <button>Back</button>
+                    </NavLink>
                 </div>
                 <div className={people.specifications}>
                     <PeopleComponents/>

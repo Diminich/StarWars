@@ -5,9 +5,8 @@ const instance = axios.create({
 });
 
 export const peopleApi = {
-    getNamePeople(peopleId) {
-        return instance.get(`people/?search=${peopleId}`)
-        // return instance.get(`people/${peopleId}`)
+    getNamePeople(peopleName) {
+        return instance.get(`people/?search=${peopleName}`)
     }
 };
 
