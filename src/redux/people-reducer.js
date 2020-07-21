@@ -1,36 +1,52 @@
 import {peopleApi} from "../API/api";
 
-const PEOPLE = 'PEOPLE';
+const SEARCH_PEOPLE = 'SEARCH_PEOPLE';
+const SPECIFIC_RESULT = 'SPECIFIC_RESULT';
 
 let initialState = {
-        searchResult: []
-
+        searchResult: [],
+        specificResult: []
     }
 ;
 
 const peopleReducer = (state = initialState, action) => {
-
+    console.log('action', action)
     switch (action.type) {
-        case PEOPLE:
-            return  {
-            searchResult: action.people
-        };
+        case SEARCH_PEOPLE:
+            return {
+                searchResult: action.searchPeople
+            };
 
         default:
             return state;
 
+        case SPECIFIC_RESULT:
+            return {
+                specificResult: action.specificPeople
+            }
+    }
+    
+};
+
+const searchPeople = (searchPeople) => ({
+    type: SEARCH_PEOPLE, searchPeople
+});
+
+const specificPeople = (specificPeople) => ({
+    type: SPECIFIC_RESULT, specificPeople
+});
+
+export const getSearchPeople = (peopleName) => {
+    return async (dispatch) => {
+        const {data} = await peopleApi.getPeople(peopleName);
+        dispatch(searchPeople(data.results));
     }
 };
 
-const people = (people) => ({
-    type: PEOPLE, people
-});
-
-export const getPeople = (peopleName) => {
-    debugger
+export const getSpecificPeople = (peopleId) => {
     return async (dispatch) => {
-        const {data} = await peopleApi.getNamePeople(peopleName);
-        dispatch(people(data.results));
+        const {data} = await peopleApi.getSpecificPeople(peopleId);
+        dispatch(specificPeople(data.results))
     }
 };
 

@@ -1,29 +1,29 @@
 import React from "react";
 import {useSelector} from "react-redux";
 
-export const PeopleComponents = () => {
-    const people = useSelector(state => state.peoplePage);
-    return (
-        <div>
-            <div>Name: {people.searchResult[0]?.name}</div>
-            <div>Height: {people.searchResult[0]?.height}</div>
-            <div>Mass: {people.searchResult[0]?.mass}</div>
-            <div>Hair_color: {people.searchResult[0]?.hair_color}</div>
-            <div>Skin_color: {people.searchResult[0]?.skin_color}</div>
-            <div>Eye_color: {people.searchResult[0]?.eye_color}</div>
-            <div>Birth_year: {people.searchResult[0]?.birth_year}</div>
-            <div>Gender: {people.searchResult[0]?.gender}</div>
-            <div>Homeworld: {people.searchResult[0]?.homeworld}</div>
-            <div>Films: {people.searchResult[0]?.films}</div>
-            <div>Species: {people.searchResult[0]?.species}</div>
-            <div>Vehicles: {people.searchResult[0]?.vehicles}</div>
-            <div>Starships: {people.searchResult[0]?.starships}</div>
-            <div>Created: {people.searchResult[0]?.created}</div>
-            <div>Edited: {people.searchResult[0]?.edited}</div>
-            <div>URL: {people.searchResult[0]?.url}</div>
-        </div>
-    )
-};
+// export const PeopleComponents = () => {
+//     const people = useSelector(state => state.peoplePage);
+//     return (
+//         <div>
+//             <div>Name: {people.searchResult?.name}</div>
+//             <div>Height: {people?.searchResult?.height}</div>
+//             <div>Mass: {people.searchResult?.mass}</div>
+//             <div>Hair_color: {people.searchResult?.hair_color}</div>
+//             <div>Skin_color: {people.searchResult?.skin_color}</div>
+//             <div>Eye_color: {people.searchResult?.eye_color}</div>
+//             <div>Birth_year: {people.searchResult?.birth_year}</div>
+//             <div>Gender: {people.searchResult?.gender}</div>
+//             <div>Homeworld: {people.searchResult?.homeworld}</div>
+//             <div>Films: {people.searchResult?.films}</div>
+//             <div>Species: {people.searchResult?.species}</div>
+//             <div>Vehicles: {people.searchResult?.vehicles}</div>
+//             <div>Starships: {people.searchResult?.starships}</div>
+//             <div>Created: {people.searchResult?.created}</div>
+//             <div>Edited: {people.searchResult?.edited}</div>
+//             <div>URL: {people.searchResult?.url}</div>
+//         </div>
+//     )
+// };
 
 export const FilmsComponents = () => {
     const films = useSelector(state => state.filmsPage);
