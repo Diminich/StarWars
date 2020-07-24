@@ -1,46 +1,51 @@
 import {vehiclesApi} from "../API/api";
 
-const VEHICLES = 'VEHICLES';
+const SEARCH_VEHICLES = 'SEARCH_VEHICLES';
+const SPECIFIC_VEHICLES = 'SPECIFIC_VEHICLES';
 
 let initialState = {
-    cargo_capacity: "",
-    consumables: "",
-    cost_in_credits: "",
-    created: "",
-    crew: "",
-    edited: "",
-    length: "",
-    manufacturer: "",
-    max_atmosphering_speed: "",
-    model: "",
-    name: "",
-    passengers: "",
-    pilots: [],
-    films: [],
-    url: "",
-    vehicle_class: ""
+    searchResult: [],
+    specificResult: {}
 };
 
 const vehiclesReducer = (state = initialState, action) => {
    switch (action.type) {
-       case VEHICLES:
+       case SEARCH_VEHICLES:
            return {
-               ...action.vehicles
+               ...state,
+               searchResult: action.searchVehicles
            };
+       case SPECIFIC_VEHICLES:
+           return {
+               ...state,
+               specificResult: action.specificVehicles
+           };
+
        default:
            return state
    }
 };
 
-const vehicles = (vehicles) => ({
-    type: VEHICLES, vehicles
+const searchVehicles = (searchVehicles) => ({
+    type: SEARCH_VEHICLES, searchVehicles
 });
 
-export const getVehicles = (titleVehicles) => {
+const specificVehicles = (specificVehicles) => ({
+    type: SPECIFIC_VEHICLES, specificVehicles
+});
+
+export const requestSearchVehicles = (vehiclesName) => {
     return  async (dispatch) => {
-        let response = await vehiclesApi.getVehiclesTitle(titleVehicles);
-        dispatch(vehicles(response.data))
+        let {data} = await vehiclesApi.getSearchVehicles(vehiclesName);
+        dispatch(searchVehicles(data.results))
     }
 };
+
+export const  requestSpecificVehicles = (vehiclesId) => {
+    return async  (dispatch) => {
+        let {data} = await vehiclesApi.getSpecificVehicles(vehiclesId);
+        dispatch(specificVehicles(data))
+    }
+}
 
 export default vehiclesReducer

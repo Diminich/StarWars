@@ -5,25 +5,26 @@ const SPECIFIC_RESULT = 'SPECIFIC_RESULT';
 
 let initialState = {
         searchResult: [],
-        specificResult: []
+        specificResult: {}
     }
 ;
 
 const peopleReducer = (state = initialState, action) => {
-    console.log('action', action)
     switch (action.type) {
         case SEARCH_PEOPLE:
             return {
+                ...state,
                 searchResult: action.searchPeople
+            };
+
+        case SPECIFIC_RESULT:
+            return {
+                ...state,
+                specificResult: action.specificPeople
             };
 
         default:
             return state;
-
-        case SPECIFIC_RESULT:
-            return {
-                specificResult: action.specificPeople
-            }
     }
     
 };
@@ -36,17 +37,17 @@ const specificPeople = (specificPeople) => ({
     type: SPECIFIC_RESULT, specificPeople
 });
 
-export const getSearchPeople = (peopleName) => {
+export const requestSearchPeople = (peopleName) => {
     return async (dispatch) => {
-        const {data} = await peopleApi.getPeople(peopleName);
+        const {data} = await peopleApi.getSearchPeople(peopleName);
         dispatch(searchPeople(data.results));
     }
 };
 
-export const getSpecificPeople = (peopleId) => {
+export const requestSpecificPeople = (peopleId) => {
     return async (dispatch) => {
         const {data} = await peopleApi.getSpecificPeople(peopleId);
-        dispatch(specificPeople(data.results))
+        dispatch(specificPeople(data))
     }
 };
 

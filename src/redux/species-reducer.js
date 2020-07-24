@@ -1,44 +1,49 @@
 import {speciesApi} from "../API/api";
 
-const SPECIES = 'SPECIES';
+const SEARCH_SPECIES = 'SEARCH_SPECIES';
+const SPECIFIC_SPECIES = 'SPECIFIC_SPECIES';
 
 let initialState = {
-    average_height: "",
-    average_lifespan: "",
-    classification: "",
-    created: "",
-    designation: "",
-    edited: "",
-    eye_colors: "",
-    hair_colors: "",
-    homeworld: "",
-    language: "",
-    name: "",
-    people: [],
-    films: [],
-    skin_colors: "",
-    url: ""
+    searchResult: [],
+    specificResult: {}
 };
 
 const speciesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SPECIES:
+        case SEARCH_SPECIES:
             return {
-                ...action.species
+                ...state,
+                searchResult: action.searchSpecies
+            };
+        case SPECIFIC_SPECIES:
+            return {
+                ...state,
+                specificResult: action.specificSpecies
             };
         default:
             return state
     }
 };
 
-export const species = (species) => ({
-    type: SPECIES, species
+const searchSpecies = (searchSpecies) => ({
+    type: SEARCH_SPECIES, searchSpecies
 });
 
-export const getSpecies = (titleSpecies) => {
+const specificSpecies = (specificSpecies) => ({
+    type:SPECIFIC_SPECIES, specificSpecies
+});
+
+export const requestSearchSpecies = (speciesName) => {
     return async (dispatch) => {
-        let response = await speciesApi.getSpeciesTitle(titleSpecies);
-        dispatch(species(response.data))
+        let {data} = await speciesApi.getSearchSpecies(speciesName);
+        dispatch(searchSpecies(data.results))
+    }
+};
+
+export const requestSpecificSpecies = (speciesId) => {
+    return async (dispatch) => {
+        let {data} = await  speciesApi.getSpecificSpecies(speciesId);
+        dispatch(specificSpecies(data))
     }
 };
 

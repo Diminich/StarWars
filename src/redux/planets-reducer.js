@@ -1,43 +1,50 @@
 import {planetsApi} from "../API/api";
 
-const PLANETS = 'PLANETS';
+const SEARCH_PLANETS = 'SEARCH_PLANETS';
+const SPECIFIC_PLANETS = 'SPECIFIC_PLANETS';
 
 let initialState = {
-    climate: "",
-    created: "",
-    diameter: "",
-    edited: "",
-    films: [],
-    gravity: "",
-    name: "",
-    orbital_period: "",
-    population: "",
-    residents: [],
-    rotation_period: "",
-    surface_water: "",
-    terrain: "",
-    url: ""
+    searchResult: [],
+    specificResult: {}
 };
 
 const planetsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case PLANETS:
+        case SEARCH_PLANETS:
             return {
-                ...action.planets
+                ...state,
+                searchResult: action.searchPlanets
+            };
+
+        case SPECIFIC_PLANETS:
+            return {
+                ...state,
+                specificResult: action.specificPlanets
             };
         default:
             return state
     }
 };
 
-export const planets = (planets) => ({
-    type: PLANETS, planets
+const searchPlanets = (searchPlanets) => ({
+    type: SEARCH_PLANETS, searchPlanets
 });
 
-export const getPlanets = (titlePlanets) => {
+const specificPlanets = (specificPlanets) => ({
+    type:SPECIFIC_PLANETS, specificPlanets
+});
+
+export const requestSearchPlanets = (planetsName) => {
     return async (dispatch) => {
-        let response = await planetsApi.getPlanetsTitle(titlePlanets);
-        dispatch(planets(response.data))
+        let {data} = await planetsApi.getSearchPlanets(planetsName);
+        dispatch(searchPlanets(data.results))
+    }
+};
+
+export const requestSpecificPlanets = (planetsId) => {
+    return async (dispatch) => {
+        let {data} = await planetsApi.getSpecificPlanets(planetsId);
+        dispatch(specificPlanets(data))
     }
 };
 

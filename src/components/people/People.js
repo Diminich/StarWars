@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getSearchPeople, getSpecificPeople} from "../../redux/people-reducer";
+import {requestSearchPeople, requestSpecificPeople} from "../../redux/people-reducer";
 import styles from "./People.module.scss";
 import {NavLink} from "react-router-dom";
 import {Select, Button} from 'antd';
 import {debounce} from 'lodash';
-import PeoplesComponents from "./PeoplesComponents";
+import PeoplesComponent from "./PeoplesComponent";
 
 function People() {
     const [peopleName, setPeopleName] = useState('');
@@ -13,30 +13,29 @@ function People() {
     const [peoplesSelect, setPeoplesSelect] = useState({});
     const dispatch = useDispatch();
     const searchResult = useSelector((state) => state.peoplePage.searchResult);
-    const specificPeople = useSelector((state) => state.peoplePage.specificPeople);
+    const specificResult = useSelector((state) => state.peoplePage.specificResult);
     const {Option} = Select;
-    console.log('specificPeople', specificPeople)
 
     useEffect(() => {
         setPeoples(searchResult);
     });
 
     useEffect(() => {
-        setPeoplesSelect(specificPeople);
+        setPeoplesSelect(specificResult);
     });
 
     useEffect(() => {
-        dispatch(getSearchPeople(peopleName));
+        dispatch(requestSearchPeople(peopleName));
     }, [peopleName]);
 
-    const onSearchPeople = debounce ((value) => {
+    const onSearchPeople = debounce((value) => {
         setPeopleName(value);
-    }, 500);
+    }, 1000);
 
-    const getPeople = debounce ((value) => {
+    const getPeople = (value) => {
         const peopleId = parseInt(value?.match(/\d+/));
-        dispatch(getSpecificPeople(peopleId))
-    }, 500);
+            dispatch(requestSpecificPeople(peopleId))
+    }
 
     return (
         <nav className={styles.wrapper}>
@@ -59,7 +58,7 @@ function People() {
                     </NavLink>
                     </div>
                     <div className={styles.specifications}>
-                        <PeoplesComponents  peoplesSelect={peoplesSelect} />
+                        <PeoplesComponent  peoplesSelect={peoplesSelect} />
                     </div>
             </div>
         </nav>

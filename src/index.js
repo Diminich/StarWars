@@ -4,10 +4,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from "./redux/redax-store";
-import {BrowserRouter} from 'react-router-dom'
 import {Provider} from "react-redux";
-
 import "antd/dist/antd.css";
+import {BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
     <BrowserRouter>

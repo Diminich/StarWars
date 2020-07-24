@@ -1,6 +1,6 @@
 import React from "react";
 
-function PeopleComponents({peoplesSelect}) {
+function PeopleComponent({peoplesSelect}) {
     return (
         <div>
             <div>Name: {peoplesSelect?.name}</div>
@@ -23,4 +23,4 @@ function PeopleComponents({peoplesSelect}) {
     )
 }
 
-export default PeopleComponents
+export default PeopleComponent

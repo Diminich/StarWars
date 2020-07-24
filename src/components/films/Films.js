@@ -1,36 +1,72 @@
-import React, {useState} from "react";
-import films from "./Films.module.scss";
+import React, {useState, useEffect} from "react";
+import styles from "./Films.module.scss";
+import {requestSearchFilms, requestSpecificFilms} from "./../../redux/films-reducer"
 import {NavLink} from "react-router-dom";
-import {FilmsComponents} from "../../selectors/selectors";
-import {useDispatch} from "react-redux";
-import {getFilms} from "../../redux/films-reducer";
-
+import {useDispatch, useSelector} from "react-redux";
+import {Select, Button} from 'antd';
+import FilmsComponent from "./FilmsComponent"
+import {debounce} from "lodash";
 
 function Films() {
-    const [titleFilms, setTitleFilms] = useState('');
+    const [titleFilms, setTitleFilms] = useState("");
+    const [Films, setFilms] = useState([]);
+    const [filmsSelect, setFilmsSelect] = useState({});
     const dispatch = useDispatch();
+    const searchFilms = useSelector((state) => state.filmsPage.searchResult);
+    const specificFilms = useSelector((state) => state.filmsPage.specificResult);
+    const {Option} = Select;
 
-    const onChangeFilmsTitle = ({currentTarget: {value}}) => setTitleFilms(value);
+    useEffect(() => {
+        setFilms(searchFilms);
+    });
 
-    const requestFilms = () => {
-        dispatch(getFilms(titleFilms));
-        setTitleFilms('');
+    useEffect(() => {
+        setFilmsSelect(specificFilms);
+    });
+
+    useEffect(() => {
+        dispatch(requestSearchFilms(titleFilms));
+    }, [titleFilms]);
+
+    const onSearchFilms = debounce((value) => {
+        setTitleFilms(value);
+    }, 1000);
+
+    const getFilms = (value) => {
+        const filmsId = parseInt(value?.match(/\d+/));
+        dispatch(requestSpecificFilms(filmsId));
     };
 
     return (
-        <nav className={films.wrapper}>
-            <div className={films.wrapperContent}>
-                <div className={films.requestInputButton}>
-                    <input className={films.requestInput} onChange={onChangeFilmsTitle} value={titleFilms}/>
-                    <button onClick={requestFilms}>request</button>
-                    <NavLink to = '/' ><button className={films.buttonBack}>Back</button></NavLink>
+        <nav className={styles.wrapper}>
+            <div className={styles.wrapperContent}>
+                <div className={styles.backButton}>
+                    <Select
+                        showSearch
+                        style={{width: 470}}
+                        placeholder="Select a person"
+                        optionFilterProp="children"
+                        onSearch={onSearchFilms}
+                        onSelect={getFilms}
+                    >
+                        {Films?.map((films) => {
+                            return (
+                                <Option key={films.url} value={films.url}>
+                                    {films.title}
+                                </Option>
+                            );
+                        })}
+                    </Select>
+                    <NavLink to="/">
+                        <Button type="back">Back</Button>
+                    </NavLink>
                 </div>
-                <div className={films.specifications}>
-                    <FilmsComponents/>
+                <div className={styles.specifications}>
+                    <FilmsComponent filmsSelect={filmsSelect}/>
                 </div>
             </div>
         </nav>
-    )
+    );
 }
 
-export default Films
+export default Films;

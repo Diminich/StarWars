@@ -1,43 +1,52 @@
 import {filmsApi} from "../API/api";
 
-const FILMS = 'FILMS';
+const SEARCH_FILMS = 'SEARCH_FILMS';
+const SPECIFIC_FILMS = 'SPECIFIC_FILMS';
 
 let initialState = {
-    characters: [],
-    created: "",
-    director: "",
-    edited: "",
-    episode_id: null,
-    planets: [],
-    producer: "",
-    release_date: "",
-    species: [],
-    starships: [],
-    title: "",
-    url: "",
-    vehicles: []
+    searchResult: [],
+    specificResult: {}
 };
 
 const filmsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case FILMS:
+        case SEARCH_FILMS:
             return {
-                ...action.films
+                ...state,
+                searchResult: action.searchFilms
             };
+
+        case SPECIFIC_FILMS:
+            return {
+                ...state,
+                specificResult: action.specificFilms
+            };
+
         default:
             return state
     }
 };
 
-export const films = (films) => ({
-    type: FILMS, films
+const searchFilms = (searchFilms) => ({
+    type: SEARCH_FILMS, searchFilms
 });
 
-export const getFilms = (titleFilms) => {
+const specificFilms = (specificFilms) => ({
+    type: SPECIFIC_FILMS, specificFilms
+})
+
+export const requestSearchFilms = (titleFilms) => {
     return async (dispatch) => {
-        let response = await filmsApi.getTitleFilms(titleFilms);
-        dispatch(films(response.data))
+        let {data} = await filmsApi.getSearchFilms(titleFilms);
+        dispatch(searchFilms(data.results))
     }
 };
+
+export const requestSpecificFilms = (filmsId) => {
+    return async (dispatch) => {
+        let {data} = await filmsApi.getSpecificFilms(filmsId);
+        dispatch(specificFilms(data))
+    }
+}
 
 export default filmsReducer;
