@@ -10,6 +10,16 @@
   justify-content: center;
 }
 
+.smallWrapper {
+  @extend .wrapper;
+  background-image: url("../../images/SS.jpg");
+  background-size: auto;
+  height: 7%;
+  flex-direction: row;
+  font-size: 20px;
+  font-weight: 400;
+}
+
 .peopleFilmsStarships {
   width: 100%;
   height: 50%;
@@ -17,6 +27,24 @@
   justify-content: space-around;
   font-size: 40px;
   font-weight: 700;
+}
+
+.smallPeopleFilmsStarships {
+  @extend .peopleFilmsStarships;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.vehiclesSpeciesPlanets {
+  @extend .peopleFilmsStarships;
+  height: 0;
+}
+
+.smallVehiclesSpeciesPlanets {
+  @extend .vehiclesSpeciesPlanets;
+  height: 50%;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .lineHighlight {
@@ -29,10 +57,5 @@
   transition: background-color .5s, color .2s;
 }
 
-.vehiclesSpeciesPlanets {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  font-size: 40px;
-  font-weight: 700;
-}
+
+
