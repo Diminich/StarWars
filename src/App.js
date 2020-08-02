@@ -1,6 +1,6 @@
 import React from 'react';
 import People from "./components/people/People";
-import MainMenu from "./components/mainWindow/MainWindow";
+import MainMenu from "./components/mainMenu/MainMenu";
 import {Route, Switch} from "react-router-dom";
 import Films from "./components/films/Films";
 import Starships from "./components/starships/Starships";
@@ -14,7 +14,6 @@ function App() {
         <div className={styles.wrapper}>
             <MainMenu/>
             <Switch>
-                <Route exact path = '/' render={() => <div/>}/>
                 <Route exact path = '/People' render={ () => <People/>}/>
                 <Route exact path = '/Films' render={() => <Films/>}/>
                 <Route exact path = '/Starships' render={() => <Starships/>}/>

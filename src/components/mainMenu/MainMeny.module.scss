@@ -12,8 +12,8 @@
 
 .smallWrapper {
   @extend .wrapper;
-  background-image: url("../../images/SS.jpg");
-  background-size: auto;
+  background-image: none;
+  background-color: black;
   height: 7%;
   flex-direction: row;
   font-size: 20px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import styles from './MainWindow.module.scss'
+import styles from './MainMeny.module.scss'
 import {NavLink, useLocation} from "react-router-dom";
 
 function MainMenu() {
