@@ -5,7 +5,7 @@ const SPECIFIC_RESULT = 'SPECIFIC_RESULT';
 
 let initialState = {
         searchResult: [],
-        specificResult: {}
+        specificResult: {},
     }
 ;
 

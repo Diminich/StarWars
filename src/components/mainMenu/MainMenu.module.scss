@@ -14,10 +14,19 @@
   @extend .wrapper;
   background-image: none;
   background-color: black;
-  height: 7%;
+  height: 70px;
   flex-direction: row;
   font-size: 20px;
   font-weight: 400;
+  position: fixed;
+  transition: 1s;
+  transform: translateY(0%);
+}
+
+.hideWrapper {
+  @extend .smallWrapper;
+  transform: translateY(-100%);
+  transition: 1s;
 }
 
 .peopleFilmsStarships {
@@ -57,5 +66,12 @@
   transition: background-color .5s, color .2s;
 }
 
+.buttonSmallMenu {
+  position: absolute !important;
+  top: 70px;
+  left: 740px;
+}
 
-
+.buttonMainMenu {
+  visibility: hidden;
+}

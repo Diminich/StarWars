@@ -6,8 +6,10 @@ import {NavLink} from "react-router-dom";
 import {Select, Button} from 'antd';
 import {debounce} from 'lodash';
 import PeoplesComponent from "./PeoplesComponent";
+import {MenuOutlined} from '@ant-design/icons';
 
 function People() {
+    // const [exitMenu, setExitMenu] = useState(false)
     const [peopleName, setPeopleName] = useState('');
     const [peoples, setPeoples] = useState([]);
     const [peoplesSelect, setPeoplesSelect] = useState({});
@@ -15,6 +17,8 @@ function People() {
     const searchResult = useSelector((state) => state.peoplePage.searchResult);
     const specificResult = useSelector((state) => state.peoplePage.specificResult);
     const {Option} = Select;
+
+    // console.log(exitMenu)
 
     useEffect(() => {
         setPeoples(searchResult);
@@ -39,8 +43,17 @@ function People() {
 
     return (
         <nav className={styles.wrapper}>
+            {/*<div style={{*/}
+            {/*    position: "absolute",*/}
+            {/*    top: 70,*/}
+            {/*    display: 'flex',*/}
+            {/*    alignItems: 'center',*/}
+            {/*    justifyContent: 'flex-start'*/}
+            {/*}}>*/}
+            {/*    <Button type="primary" onClick={() => setExitMenu(!exitMenu)}><MenuOutlined/></Button>*/}
+            {/*</div>*/}
             <div className={styles.wrapperContent}>
-                <div className={styles.backButton}> 
+                <div className={styles.backButton}>
                     <Select
                         showSearch
                         style={{width: 470}}
