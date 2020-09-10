@@ -18,11 +18,11 @@ function Films() {
 
     useEffect(() => {
         setFilms(searchFilms);
-    });
+    }, [searchFilms]);
 
     useEffect(() => {
         setFilmsSelect(specificFilms);
-    });
+    }, [specificFilms]);
 
     useEffect(() => {
         dispatch(requestSearchFilms(titleFilms));

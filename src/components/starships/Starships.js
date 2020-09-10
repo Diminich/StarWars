@@ -18,11 +18,11 @@ function Starships() {
 
     useEffect(() => {
         setStarships(searchResult);
-    });
+    }, [searchResult]);
 
     useEffect(() => {
         setStarshipsSelectSelect(specificResult);
-    });
+    },[specificResult]);
 
     useEffect(() => {
         dispatch(requestSearchStarships(starshipsName));

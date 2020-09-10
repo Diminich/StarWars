@@ -18,11 +18,11 @@ function Species() {
 
     useEffect(() => {
         setSpecies(searchResult);
-    });
+    }, [searchResult]);
 
     useEffect(() => {
         setSpeciesSelect(specificResult);
-    });
+    }, [specificResult]);
 
     useEffect(() => {
         dispatch(requestSearchSpecies(speciesName));

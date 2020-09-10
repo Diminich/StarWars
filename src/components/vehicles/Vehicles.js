@@ -18,11 +18,11 @@ function Vehicles() {
 
     useEffect(() => {
         setVehicles(searchResult);
-    });
+    }, [searchResult]);
 
     useEffect(() => {
         setVehiclesSelect(specificResult);
-    });
+    }, [specificResult]);
 
     useEffect(() => {
         dispatch(requestSearchVehicles(vehiclesName));

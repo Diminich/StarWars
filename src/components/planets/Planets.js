@@ -18,11 +18,11 @@ function Planets() {
 
     useEffect(() => {
         setPlanets(searchResult);
-    });
+    }, [searchResult]);
 
     useEffect(() => {
         setPlanetsSelect(specificResult);
-    });
+    }, [specificResult]);
 
     useEffect(() => {
         dispatch(requestSearchPlanets(planetsName));
