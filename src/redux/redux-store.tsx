@@ -18,6 +18,7 @@ let reducers = combineReducers({
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
-window.__store__ = store;
+export type AppStateType = ReturnType<typeof reducers>
+export type InferActionTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
 
 export default store

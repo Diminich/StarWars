@@ -6,19 +6,21 @@ import {NavLink} from "react-router-dom";
 import {Select, Button} from 'antd';
 import {debounce} from 'lodash';
 import PeoplesComponent from "./PeoplesComponent";
+import {AppStateType} from "../../redux/redux-store";
+import {PeopleSearchType, PeopleSpecificType} from "../../Types/TypePeople";
 
 function People() {
     const [peopleName, setPeopleName] = useState('');
-    const [peoples, setPeoples] = useState([]);
-    const [peoplesSelect, setPeoplesSelect] = useState({});
+    const [peoples, setPeoples] = useState <Array<PeopleSearchType>>([]);
+    const [peoplesSelect, setPeoplesSelect] = useState<PeopleSpecificType | null>(null);
     const dispatch = useDispatch();
-    const searchResult = useSelector((state) => state.peoplePage.searchResult);
-    const specificResult = useSelector((state) => state.peoplePage.specificResult);
+    const searchResult = useSelector<AppStateType, Array<PeopleSearchType>>(state => state.peoplePage.searchResult);
+    const specificResult = useSelector<AppStateType, PeopleSpecificType | null>(state => state.peoplePage.specificResult);
     const {Option} = Select;
 
     useEffect(() => {
         setPeoples(searchResult);
-    },[searchResult]);
+    }, [searchResult]);
 
     useEffect(() => {
         setPeoplesSelect(specificResult);
@@ -32,9 +34,9 @@ function People() {
         setPeopleName(value);
     }, 1000);
 
-    const getPeople = (value) => {
-        const peopleId = parseInt(value?.match(/\d+/));
-            dispatch(requestSpecificPeople(peopleId))
+    const getPeople = (value: string) => {
+        const peopleId = Number(value?.match(/\d+/))
+        dispatch(requestSpecificPeople(peopleId))
     }
 
     return (
@@ -49,17 +51,21 @@ function People() {
                         onSearch={onSearchPeople}
                         onSelect={getPeople}
                     >
-                        {peoples?.map((hero) => {
-                            return  <Option key={hero.url} value={hero.url}>{hero.name}</Option>
+                        {peoples?.map((hero: { url: string, name: string }) => {
+                            return (
+                                <Option key={hero.url} value={hero.url}>
+                                    {hero.name}
+                                </Option>
+                            )
                         })}
                     </Select>
                     <NavLink to='/'>
-                        <Button type="back">Back</Button>
+                        <Button>Back</Button>
                     </NavLink>
-                    </div>
-                    <div className={styles.specifications}>
-                        <PeoplesComponent  peoplesSelect={peoplesSelect}/>
-                    </div>
+                </div>
+                <div className={styles.specifications}>
+                    <PeoplesComponent peoplesSelect={peoplesSelect}/>
+                </div>
             </div>
         </nav>
     );

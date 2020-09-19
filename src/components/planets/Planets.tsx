@@ -6,14 +6,16 @@ import {Button, Select} from "antd";
 import {debounce} from 'lodash';
 import {requestSearchPlanets, requestSpecificPlanets} from "../../redux/planets-reducer";
 import PlanetsComponent from "./PlanetsComponent";
+import {AppStateType} from "../../redux/redux-store";
+import {PlanetsSearchType, PlanetsSpecificType} from "../../Types/TypePlanet";
 
 function Planets() {
     const [planetsName, setPlanetsName] = useState('');
-    const [planets, setPlanets] = useState([]);
-    const [planetsSelect, setPlanetsSelect] = useState({});
+    const [planets, setPlanets] = useState<Array<PlanetsSearchType>>([]);
+    const [planetsSelect, setPlanetsSelect] = useState<PlanetsSpecificType | null>(null);
     const dispatch = useDispatch();
-    const searchResult = useSelector((state) => state.planetsPage.searchResult);
-    const specificResult = useSelector((state) => state.planetsPage.specificResult);
+    const searchResult = useSelector<AppStateType, Array<PlanetsSearchType>>(state  => state.planetsPage.searchResult);
+    const specificResult = useSelector<AppStateType, PlanetsSpecificType | null>(state => state.planetsPage.specificResult);
     const {Option} = Select;
 
     useEffect(() => {
@@ -32,8 +34,8 @@ function Planets() {
         setPlanetsName(value);
     }, 1000);
 
-    const getPeople = (value) => {
-        const planetsId = parseInt(value?.match(/\d+/));
+    const getPeople = (value: string) => {
+        const planetsId = Number(value?.match(/\d+/))
         dispatch(requestSpecificPlanets(planetsId))
     };
 
@@ -49,12 +51,16 @@ function Planets() {
                         onSearch={onSearchPeople}
                         onSelect={getPeople}
                     >
-                        {planets?.map((planets) => {
-                            return  <Option key={planets.url} value={planets.url}>{planets.name}</Option>
+                        {planets?.map((planets: {url: string, name: string}) => {
+                            return  (
+                                <Option key={planets.url} value={planets.url}>
+                                    {planets.name}
+                                </Option>
+                            )
                         })}
                     </Select>
                     <NavLink to='/'>
-                        <Button type="back">Back</Button>
+                        <Button>Back</Button>
                     </NavLink>
                 </div>
                 <div className={styles.specifications}>

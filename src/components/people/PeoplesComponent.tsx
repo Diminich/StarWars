@@ -1,6 +1,11 @@
 import React from "react";
+import {PeopleSpecificType} from "../../Types/TypePeople";
 
-function PeopleComponent({peoplesSelect}) {
+type PeoplesSelectProps = {
+        peoplesSelect: PeopleSpecificType | null
+}
+
+function PeopleComponent({peoplesSelect}: PeoplesSelectProps) {
     return (
         <div>
             <div>Name: {peoplesSelect?.name}</div>
@@ -11,7 +16,7 @@ function PeopleComponent({peoplesSelect}) {
             <div>Eye_color: {peoplesSelect?.eye_color}</div>
             <div>Birth_year: {peoplesSelect?.birth_year}</div>
             <div>Gender: {peoplesSelect?.gender}</div>
-            <div>Homeworld: {peoplesSelect?.homeworld}</div>
+            <div>homeWorld: {peoplesSelect?.homeworld}</div>
             <div>Films: {peoplesSelect?.films}</div>
             <div>Species: {peoplesSelect?.species}</div>
             <div>Vehicles: {peoplesSelect?.vehicles}</div>

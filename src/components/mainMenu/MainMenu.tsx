@@ -11,7 +11,7 @@ function MainMenu() {
 
     return (
         <nav className={cn(pathname === '/' ? styles.wrapper :
-            (isMenu === false ? styles.hideWrapper : styles.smallWrapper))}>
+            (!isMenu ? styles.hideWrapper : styles.smallWrapper))}>
             <Button className={cn(pathname === '/' ? styles.buttonMainMenu : styles.buttonSmallMenu)} type="primary"
                     onClick={() => setIsMenu(!isMenu)}>
                 <MenuOutlined/>

@@ -5,62 +5,62 @@ const instance = axios.create({
 });
 
 export const peopleApi = {
-    getSearchPeople(peopleName) {
+    getSearchPeople(peopleName: string) {
         return instance.get(`people/?search=${peopleName}`)
     },
 
-    getSpecificPeople(peopleId) {
+    getSpecificPeople(peopleId: number) {
         return instance.get(`people/${peopleId}`)
     }
 };
 
 export const filmsApi = {
-    getSearchFilms(titleFilms) {
+    getSearchFilms(titleFilms: string) {
         return instance.get(`films/?search=${titleFilms}`)
 
     },
 
-    getSpecificFilms(filmsId) {
+    getSpecificFilms(filmsId: number) {
         return instance.get(`films/${filmsId}`)
     }
 };
 
 export const starshipsApi = {
-    getSearchStarships(starshipsName) {
+    getSearchStarships(starshipsName: string) {
         return instance.get(`starships/?search=${starshipsName}`)
     },
 
-    getSpecificStarships(starshipsId) {
+    getSpecificStarships(starshipsId: number) {
         return instance.get(`starships/${starshipsId}`)
     }
 };
 
 export const vehiclesApi = {
-    getSearchVehicles(vehiclesName) {
+    getSearchVehicles(vehiclesName: string) {
         return instance.get(`vehicles/?search=${vehiclesName}`)
     },
 
-    getSpecificVehicles(vehiclesId) {
+    getSpecificVehicles(vehiclesId: number) {
         return instance.get(`vehicles/${vehiclesId}`)
     }
 };
 
 export const speciesApi = {
-    getSearchSpecies(speciesName) {
+    getSearchSpecies(speciesName: string) {
         return instance.get(`species/?search=${speciesName}`)
     },
 
-    getSpecificSpecies(speciesId) {
+    getSpecificSpecies(speciesId: number) {
         return instance.get(`species/${speciesId}`)
     }
 };
 
 export const planetsApi = {
-    getSearchPlanets(planetsName) {
+    getSearchPlanets(planetsName: string) {
         return instance.get(`planets/?search=${planetsName}`)
     },
 
-    getSpecificPlanets(planetsId) {
+    getSpecificPlanets(planetsId: number) {
         return instance.get(`planets/${planetsId}`)
     }
 };

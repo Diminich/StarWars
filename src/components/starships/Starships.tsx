@@ -6,14 +6,16 @@ import styles from "./Starships.module.scss";
 import {debounce} from 'lodash';
 import StarshipsComponent from "./StarshipsComponent";
 import {requestSearchStarships, requestSpecificStarships} from "../../redux/starships-reducer";
+import {StarshipsSearchType, StarshipsSpecificType} from "../../Types/TypeStarships";
+import {AppStateType} from "../../redux/redux-store";
 
 function Starships() {
     const [starshipsName, setStarshipsName] = useState('');
-    const [starships, setStarships] = useState([]);
-    const [starshipsSelect, setStarshipsSelectSelect] = useState({});
+    const [starships, setStarships] = useState<Array<StarshipsSearchType>>([]);
+    const [starshipsSelect, setStarshipsSelectSelect] = useState<StarshipsSpecificType | null>(null);
     const dispatch = useDispatch();
-    const searchResult = useSelector((state) => state.starshipsPage.searchResult);
-    const specificResult = useSelector((state) => state.starshipsPage.specificResult);
+    const searchResult = useSelector<AppStateType, Array<StarshipsSearchType>>(state => state.starshipsPage.searchResult);
+    const specificResult = useSelector<AppStateType, StarshipsSpecificType | null>(state => state.starshipsPage.specificResult);
     const {Option} = Select;
 
     useEffect(() => {
@@ -32,8 +34,8 @@ function Starships() {
         setStarshipsName(value);
     }, 1000);
 
-    const getPeople = (value) => {
-        const peopleId = parseInt(value?.match(/\d+/));
+    const getPeople = (value: string) => {
+        const peopleId = Number(value?.match(/\d+/))
         dispatch(requestSpecificStarships(peopleId))
     }
 
@@ -49,12 +51,16 @@ function Starships() {
                         onSearch={onSearchPeople}
                         onSelect={getPeople}
                     >
-                        {starships?.map((starships) => {
-                            return <Option key={starships.url} value={starships.url}>{starships.name}</Option>
+                        {starships?.map((starships: {url: string, name: string}) => {
+                            return (
+                                <Option key={starships.url} value={starships.url}>
+                                    {starships.name}
+                                </Option>
+                            )
                         })}
                     </Select>
                     <NavLink to='/'>
-                        <Button type="back">Back</Button>
+                        <Button>Back</Button>
                     </NavLink>
                 </div>
                 <div className={styles.specifications}>
