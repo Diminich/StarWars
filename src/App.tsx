@@ -14,7 +14,7 @@ function App() {
         <div className={styles.wrapper}>
             <MainMenu/>
             <Switch>
-                <Route exact path = '/StarWars' render={ () => <div />}/>
+                <Route exact path = '/' render={ () => <div />}/>
                 <Route exact path = '/People' render={ () => <People/>}/>
                 <Route exact path = '/Films' render={() => <Films/>}/>
                 <Route exact path = '/Starships' render={() => <Starships/>}/>
