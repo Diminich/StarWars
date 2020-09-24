@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/StarWars/static/css/main.01b01f61.chunk.css",
-    "main.js": "/StarWars/static/js/main.283d2fe6.chunk.js",
-    "main.js.map": "/StarWars/static/js/main.283d2fe6.chunk.js.map",
+    "main.js": "/StarWars/static/js/main.2a916c96.chunk.js",
+    "main.js.map": "/StarWars/static/js/main.2a916c96.chunk.js.map",
     "runtime-main.js": "/StarWars/static/js/runtime-main.4b33b6cf.js",
     "runtime-main.js.map": "/StarWars/static/js/runtime-main.4b33b6cf.js.map",
     "static/css/2.9edc93b8.chunk.css": "/StarWars/static/css/2.9edc93b8.chunk.css",
-    "static/js/2.0c8b1197.chunk.js": "/StarWars/static/js/2.0c8b1197.chunk.js",
-    "static/js/2.0c8b1197.chunk.js.map": "/StarWars/static/js/2.0c8b1197.chunk.js.map",
+    "static/js/2.d7fbb885.chunk.js": "/StarWars/static/js/2.d7fbb885.chunk.js",
+    "static/js/2.d7fbb885.chunk.js.map": "/StarWars/static/js/2.d7fbb885.chunk.js.map",
     "index.html": "/StarWars/index.html",
-    "precache-manifest.0b09a032f7b1d9f50c643e6b3110381e.js": "/StarWars/precache-manifest.0b09a032f7b1d9f50c643e6b3110381e.js",
+    "precache-manifest.fe5b1c0993f7299691f8c55f428a1f4b.js": "/StarWars/precache-manifest.fe5b1c0993f7299691f8c55f428a1f4b.js",
     "service-worker.js": "/StarWars/service-worker.js",
     "static/css/2.9edc93b8.chunk.css.map": "/StarWars/static/css/2.9edc93b8.chunk.css.map",
     "static/css/main.01b01f61.chunk.css.map": "/StarWars/static/css/main.01b01f61.chunk.css.map",
-    "static/js/2.0c8b1197.chunk.js.LICENSE.txt": "/StarWars/static/js/2.0c8b1197.chunk.js.LICENSE.txt",
+    "static/js/2.d7fbb885.chunk.js.LICENSE.txt": "/StarWars/static/js/2.d7fbb885.chunk.js.LICENSE.txt",
     "static/media/Films.module.scss": "/StarWars/static/media/FL.89c1716c.jpg",
     "static/media/MainMenu.module.scss": "/StarWars/static/media/MW.b6ecefae.jpg",
     "static/media/People.module.scss": "/StarWars/static/media/PE.ef00dfcc.jpg",
@@ -25,8 +25,8 @@
   "entrypoints": [
     "static/js/runtime-main.4b33b6cf.js",
     "static/css/2.9edc93b8.chunk.css",
-    "static/js/2.0c8b1197.chunk.js",
+    "static/js/2.d7fbb885.chunk.js",
     "static/css/main.01b01f61.chunk.css",
-    "static/js/main.283d2fe6.chunk.js"
+    "static/js/main.2a916c96.chunk.js"
   ]
 }
