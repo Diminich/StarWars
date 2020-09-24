@@ -14,14 +14,14 @@ function App() {
         <div className={styles.wrapper}>
             <MainMenu/>
             <Switch>
-                <Route exact path = '/' render={ () => <div />}/>
+                <Route exact path = '/' render={ () => <div/>}/>
                 <Route exact path = '/People' render={ () => <People/>}/>
                 <Route exact path = '/Films' render={() => <Films/>}/>
                 <Route exact path = '/Starships' render={() => <Starships/>}/>
                 <Route exact path = '/Vehicles' render={() => <Vehicles/>}/>
                 <Route exact path = '/Species' render={() => <Species/>}/>
                 <Route exact path = '/Planets' render={() => <Planets/>}/>
-                <Route exact path = '*' render={() => <div className={styles.notFound}>404 NOT FOUND</div>}/>
+                <Route render={() => <div className={styles.notFound}>404 NOT FOUND</div>}/>
             </Switch>
         </div>
     );
