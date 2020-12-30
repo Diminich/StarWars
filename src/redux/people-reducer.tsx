@@ -31,7 +31,6 @@ const peopleReducer = (state: InitialStateType = initialState, action: ActionTyp
         default:
             return state;
     }
-
 };
 
 const action = {
